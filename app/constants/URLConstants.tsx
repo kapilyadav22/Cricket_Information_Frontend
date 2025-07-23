@@ -3,7 +3,7 @@ const FACEBOOK = "https://facebook.com";
 const INSTAGRAM = "https://instagram.com";  
 
 // const BASE_URL = "http://localhost:4000"; 
-const BASE_URL = "http://localhost:4000"; 
+const BASE_URL = "https://www.lccoordinator.com:4000"; 
 export const TEAM_LOGO_BASE_URL = "https://scores.iplt20.com/ipl/teamlogos/";
 
 export const API_ENDPOINTS = {
