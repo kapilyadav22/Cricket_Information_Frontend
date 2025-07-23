@@ -4,7 +4,7 @@ export const ROUTES = {
   MATCH_SCHEDULE: '/matchSchedule',
   POINTS_TABLE: '/pointsTable',
   TEAMS: '/teams',
-  CONTACT: '/contact',
+  // CONTACT: '/contact',
 };
 
 export const NAVIGATION_MENU_ITEMS = {
@@ -12,7 +12,7 @@ export const NAVIGATION_MENU_ITEMS = {
   MATCH_SCHEDULE: 'Match Schedule',
   POINTS_TABLE: 'Points Table',
   TEAMS: 'Teams',
-  CONTACT: 'Contact',
+  // CONTACT: 'Contact',
 }
 
 export const PAGE_NAMES = {
