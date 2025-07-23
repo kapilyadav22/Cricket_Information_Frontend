@@ -20,7 +20,7 @@ const convertPointsTableData = (data: any[]): PointsTableDashBoardType[] => {
   }));
 };
 
-export function convertMatchSchedule(scheduledata: any[]): MatchSchedule {
+function convertMatchSchedule(scheduledata: any[]): MatchSchedule {
   return scheduledata.map((item) => ({
     MatchDate: item.MatchEndDate ?? "",
     MatchNumber: Number(item.RowNo) || 0,
