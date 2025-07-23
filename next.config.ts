@@ -1,7 +1,30 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "scores.iplt20.com",
+      },
+      {
+        protocol: "https",
+        hostname: "feeds-100mb.s3-ap-southeast-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ipl-stats-sports-mechanic.s3.ap-south-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "img1.hscicdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.cricbuzz.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
