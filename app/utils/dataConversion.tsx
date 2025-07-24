@@ -74,7 +74,7 @@ function convertMatchSchedule(scheduledata: any[]): MatchSchedule {
   }));
 }
 
-export function convertMatchData(data: any[]): FixtureMatch[] {
+function convertMatchData(data: any[]): FixtureMatch[] {
   return data.map((item) => ({
     id: item.id,
     homeTeamName: item.home.name,
