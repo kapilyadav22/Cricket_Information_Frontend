@@ -16,6 +16,8 @@ import { API_ENDPOINTS } from "@/constants/URLConstants";
 import YearSelector from "@/utils/iplYearSelector";
 import CommonErrorComponent from "@/utils/commonErrorComponent";
 
+import https from "https";
+
 const tablecellTextStyle = "text-center ";
 
 type Props = {
@@ -23,17 +25,22 @@ type Props = {
 };
 
 export default async function PointsTable({ searchParams }: Props) {
-  const params = await searchParams || {};
+  const params = searchParams || {};
   const year = params?.year ?? new Date().getFullYear().toString();
   const apiUrl = `${API_ENDPOINTS.GET_POINTS_TABLE}?year=${year}`;
 
   try {
-    const res = await fetch(apiUrl, { cache: "no-store" });
+    const res = await fetch(apiUrl, {
+      cache: "no-store",
+    });
+
     if (!res.ok) {
       return <CommonErrorComponent pageName="Points Table" />;
     }
+
     const data = await res.json();
     const pointsTableData = convertPointsTableData(data);
+
     return (
       <div className="container mx-auto p-4 justify-center">
         <h1 className="text-2xl font-bold mb-4 justify-self-center">
@@ -57,13 +64,13 @@ export default async function PointsTable({ searchParams }: Props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {pointsTableData.map((team, ind) => (
+            {pointsTableData.map((team) => (
               <TableRow key={team.teamId}>
                 <TableCell className={tablecellTextStyle}>
                   {team.position}
                 </TableCell>
                 <TableCell>
-                  <div className="ml-1 md:ml-4 flex space-x-2  w-auto">
+                  <div className="ml-1 md:ml-4 flex space-x-2 w-auto">
                     <Image
                       src={team.teamLogo || logo}
                       alt={team.teamName}
@@ -101,7 +108,7 @@ export default async function PointsTable({ searchParams }: Props) {
                   {team.points}
                 </TableCell>
                 <TableCell className={tablecellTextStyle}>
-                  {team.recentForm.split(",").map((form: any, index) => (
+                  {team.recentForm.split(",").map((form: string, index) => (
                     <span
                       key={index}
                       className={`${
@@ -109,7 +116,7 @@ export default async function PointsTable({ searchParams }: Props) {
                           ? "text-green-500"
                           : form === "L"
                           ? "text-red-500"
-                          : "tex-gray-300"
+                          : "text-gray-300"
                       }`}
                     >
                       {form + " "}

@@ -15,11 +15,13 @@ import { API_ENDPOINTS } from "@/constants/URLConstants";
 import YearSelector from "@/utils/iplYearSelector";
 import { MatchSchedule } from "../../types/MatchScheduleTableType";
 
-type Props = {
-  searchParams: { [key: string]: string | undefined };
-};
 
-export default async function MatchScheduleTable({ searchParams }: Props) {
+export default async function MatchScheduleTable({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+
   try {
     const params = await searchParams || {};
     const year = params?.year ?? new Date().getFullYear().toString();
