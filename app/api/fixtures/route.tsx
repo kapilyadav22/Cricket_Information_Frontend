@@ -1,4 +1,4 @@
-import { LIVE_MATCHE,FIXTURES, HOST } from "@/constants/URLConstants";
+import { LIVE_MATCHES,FIXTURES, HOST } from "@/constants/URLConstants";
 
 export async function GET() {
   try {
