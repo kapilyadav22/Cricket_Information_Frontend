@@ -21,16 +21,18 @@ type TeamScore = {
   wickets: number;
 };
 
-type LiveMatchesData = {
+type MatchTypeMap = {
   [matchType: string]: MatchDetails[]; 
 };
+
+type LiveMatchesData = MatchTypeGroup[];
 
 type MatchDetails = {
   matchId: number;
   matchDesc: string;
   matchFormat: string;
-  team1 : Team;
-  team2 : Team;
+  teamA : Team;
+  teamB : Team;
   status: string;
   venueInfo : VenueInfo;
   matchScore: {
