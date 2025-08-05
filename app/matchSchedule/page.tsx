@@ -16,11 +16,11 @@ import YearSelector from "@/utils/iplYearSelector";
 import { MatchSchedule } from "../../types/MatchScheduleTableType";
 
 
-export default async function MatchScheduleTable({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
+type PageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function MatchScheduleTable({searchParams}: PageProps) {
 
   try {
     const params = await searchParams || {};

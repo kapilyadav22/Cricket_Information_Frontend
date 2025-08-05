@@ -1,4 +1,4 @@
-import { LiveMatchesData, MatchDetails } from "../../types/liveMatchDetails";
+import { LiveMatchesData } from "../../types/liveMatchDetails";
 import { MatchSchedule } from "../../types/MatchScheduleTableType";
 import { PointsTableDashBoardType } from "../../types/pointsTableDashBoardType";
 

@@ -6,13 +6,13 @@ import {
   CRICBUZZ_BASE_IMAGE_URL,
   LIVE_MATCHES_URL,
 } from "@/constants/URLConstants";
-import { LiveMatchesData } from "../../types/liveMatchDetails";
+import { LiveMatchesData, TeamScore } from "../../types/liveMatchDetails";
 import { convertLiveMatchData } from "@/utils/dataConversion";
 
 export default function LiveScoresPage() {
-  const [matches, setMatches] = useState<LiveMatchesData>([]);
+  const [matches, setMatches] = useState<LiveMatchesData[]>();
   const [loading, setLoading] = useState(true);
-  const prevMatchesRef = useRef<LiveMatchesData>([]);
+  const prevMatchesRef = useRef<LiveMatchesData[]>([]);
 
   const fetchScores = async () => {
     try {
@@ -20,6 +20,7 @@ export default function LiveScoresPage() {
       const data = await res.json();
       const matchesData = convertLiveMatchData(data.typeMatches || []);
       setMatches(matchesData);
+      console.log(matchesData);
       setLoading(false);
     } catch (err) {
       console.error("Error fetching scores:", err);
@@ -33,7 +34,7 @@ export default function LiveScoresPage() {
   }, []);
 
   useEffect(() => {
-    if (matches.length > 0) {
+    if (matches && matches.length > 0) {
       prevMatchesRef.current = matches;
     }
   }, [matches]);
@@ -41,12 +42,13 @@ export default function LiveScoresPage() {
   const isScoreUpdated = (
     teamKey: "team1Score" | "team2Score",
     matchId: number,
-    newScore?: any
+    newScore?: TeamScore
   ) => {
     for (const match of prevMatchesRef.current) {
       const entry = Object.values(match)
         .flat()
         .find((m: any) => m.matchId === matchId);
+        
       if (entry && newScore && entry.matchScore?.[teamKey]) {
         const prevScore = entry.matchScore[teamKey];
         return (

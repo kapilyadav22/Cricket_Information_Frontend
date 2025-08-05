@@ -16,16 +16,14 @@ import { API_ENDPOINTS } from "@/constants/URLConstants";
 import YearSelector from "@/utils/iplYearSelector";
 import CommonErrorComponent from "@/utils/commonErrorComponent";
 
-import https from "https";
-
 const tablecellTextStyle = "text-center ";
 
-type Props = {
-  searchParams: { [key: string]: string | undefined };
-};
+type PageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
 
-export default async function PointsTable({ searchParams }: Props) {
-  const params = searchParams || {};
+export default async function PointsTable({ searchParams }: PageProps) {
+  const params = await searchParams || {};
   const year = params?.year ?? new Date().getFullYear().toString();
   const apiUrl = `${API_ENDPOINTS.GET_POINTS_TABLE}?year=${year}`;
 

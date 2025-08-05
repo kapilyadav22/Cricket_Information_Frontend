@@ -15,7 +15,7 @@ type Team = {
 }
 
 type TeamScore = {
-  inningsId: number;
+  inningsId?: number;
   runs: string;
   overs: string;
   wickets: number;
@@ -25,7 +25,7 @@ type MatchTypeMap = {
   [matchType: string]: MatchDetails[]; 
 };
 
-type LiveMatchesData = MatchTypeGroup[];
+type LiveMatchesData = MatchTypeMap[];
 
 type MatchDetails = {
   matchId: number;
