@@ -1,4 +1,6 @@
 //Dummy Data
+import logo from "../../public/images/logo.png";
+
 const pointsTableData1 = [
   {
     AgainstTeam: "2395/250.5",

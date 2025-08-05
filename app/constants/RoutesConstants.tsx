@@ -13,12 +13,12 @@ export const NAVIGATION_MENU_ITEMS = {
   POINTS_TABLE: 'Points Table',
   TEAMS: 'Teams',
   // CONTACT: 'Contact',
-}
+} as const
 
 export const PAGE_NAMES = {
   ...NAVIGATION_MENU_ITEMS,
   HOME: 'Home',
-}
+} as const
 
 
 

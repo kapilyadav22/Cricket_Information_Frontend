@@ -40,7 +40,7 @@ const Navigation = () => {
         </div>
 
         <ul className="md:flex hidden ">
-          {Object.keys(NAVIGATION_MENU_ITEMS).map((key) => (
+          {(Object.keys(NAVIGATION_MENU_ITEMS) as Array<keyof typeof NAVIGATION_MENU_ITEMS>).map((key) => (
             <li
               key={NAVIGATION_MENU_ITEMS[key]}
               className={`${TEXTCOLOR} ${TEXT_CURSOR_STYLE}`}
@@ -63,7 +63,7 @@ const Navigation = () => {
               </button>
             </div>
             <ul className="flex flex-col gap-4 px-6">
-              {Object.keys(NAVIGATION_MENU_ITEMS).map((key) => (
+              {(Object.keys(NAVIGATION_MENU_ITEMS) as Array<keyof typeof NAVIGATION_MENU_ITEMS>).map((key) => (
                 <li
                   key={NAVIGATION_MENU_ITEMS[key]}
                   className={`${TEXTCOLOR} ${TEXT_CURSOR_STYLE}`}

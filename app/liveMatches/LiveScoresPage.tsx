@@ -10,17 +10,17 @@ import { LiveMatchesData, TeamScore } from "../../types/liveMatchDetails";
 import { convertLiveMatchData } from "@/utils/dataConversion";
 
 export default function LiveScoresPage() {
-  const [matches, setMatches] = useState<LiveMatchesData[]>();
+  const [matches, setMatches] = useState<LiveMatchesData>([]);
   const [loading, setLoading] = useState(true);
-  const prevMatchesRef = useRef<LiveMatchesData[]>([]);
+  const prevMatchesRef = useRef<LiveMatchesData>([]);
 
   const fetchScores = async () => {
     try {
       const res = await fetch(LIVE_MATCHES_URL, { cache: "no-store" });
       const data = await res.json();
+      console.log(res);
       const matchesData = convertLiveMatchData(data.typeMatches || []);
       setMatches(matchesData);
-      console.log(matchesData);
       setLoading(false);
     } catch (err) {
       console.error("Error fetching scores:", err);
@@ -40,7 +40,7 @@ export default function LiveScoresPage() {
   }, [matches]);
 
   const isScoreUpdated = (
-    teamKey: "team1Score" | "team2Score",
+    teamKey: "team1Score" | "team2Score" ,
     matchId: number,
     newScore?: TeamScore
   ) => {
@@ -107,9 +107,9 @@ export default function LiveScoresPage() {
                           },
                         ].map(({ team, score, key }) => {
                           const highlight = isScoreUpdated(
-                            key as String,
+                            key as "team1Score" | "team2Score",
                             match.matchId,
-                            score
+                            score as TeamScore
                           );
                           const runs = score?.runs ?? "";
                           const wickets = score?.wickets ?? "";

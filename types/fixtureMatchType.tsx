@@ -5,7 +5,7 @@ export type FixtureMatch = {
   match_title: string;
   match_subtitle: string;
   match_date: string;
-  series_name: string;
+  series_name?: string;
   venue: string;
 };
 

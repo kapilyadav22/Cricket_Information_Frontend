@@ -1,3 +1,4 @@
+import { FixtureMatch } from "../../types/fixtureMatchType";
 import { LiveMatchesData } from "../../types/liveMatchDetails";
 import { MatchSchedule } from "../../types/MatchScheduleTableType";
 import { PointsTableDashBoardType } from "../../types/pointsTableDashBoardType";
@@ -7,7 +8,7 @@ const convertPointsTableData = (data: any[]): PointsTableDashBoardType[] => {
     teamId: item.TeamID,
     position: parseInt(item.OrderNo, 10),
     teamName: item.TeamName,
-    teamLogo: item.TeamLogo || logo,
+    teamLogo: item.TeamLogo,
     matchesPlayed: parseInt(item.Matches, 10),
     matchesWon: parseInt(item.Wins, 10),
     matchesLost: parseInt(item.Loss, 10),
@@ -20,7 +21,7 @@ const convertPointsTableData = (data: any[]): PointsTableDashBoardType[] => {
   }));
 };
 
-function convertMatchSchedule(scheduledata: any[]): MatchSchedule {
+function convertMatchSchedule(scheduledata: any[]): MatchSchedule[] {
   return scheduledata.map((item) => ({
     MatchDate: item.MatchEndDate ?? "",
     MatchNumber: Number(item.RowNo) || 0,
@@ -93,7 +94,7 @@ function convertMatchData(data: any[]): FixtureMatch[] {
   //0 - International
   //1 - League
   //2- Women's League
-export function convertLiveMatchData(data: any[]): LiveMatchesData[] {
+export function convertLiveMatchData(data: any[]): LiveMatchesData {
   return data.map((match) => {
     const allMatches = match.seriesMatches?.flatMap(
       (series: any) => series.seriesAdWrapper?.matches ?? []
